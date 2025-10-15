@@ -1,0 +1,34 @@
+#!/bin/bash 
+# By Alex
+# O Script captura linhas de acordo com o número que você está pensando ... 
+
+echo -e "\033[1;33mBem vindo ao oráculo de Alexandre🎲\033[0m"
+   echo Para sair pressione CTRL + C
+
+while : ; do 
+   echo Escreva Números por espaço:
+      echo -e " \n" 
+
+read number 
+ # Saber se números foi usado no valor de number.
+ if [[ $number  != [0-9]* ]] ; then 
+	 echo Por favor use números 
+	 exit 1 
+ fi 
+
+count_loop=$(wc -w <<< "$number")
+
+    echo ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐🎲📝🔥
+  
+[ $count_loop = 1 ] && sed -n "$number p" dicionario.txt
+
+if [ $count_loop != 1 ] ; then
+	for seq in $(seq $count_loop) ; do 
+	      number_of_line=$(echo $number | awk -v Number_word=$seq '{print $Number_word}') 
+         sed -n "$number_of_line p" dicionario.txt 
+       done 
+fi
+  
+    echo ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐🔮🍄🎲 
+      
+done 
